@@ -1,3 +1,9 @@
+# Choose the value of "Choose" from the following number
+#1 - 3D cube with atoms at hexagon
+#2 - 3D cube points in FCC lattice
+#3 - 3D cube points equally spaced
+#4 - Equidistant points inside the sphere
+#5 - Random points inside the sphere
 set choose 2
 set a 1
 set radius 2.0
