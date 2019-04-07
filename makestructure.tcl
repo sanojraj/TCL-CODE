@@ -4,6 +4,7 @@
 #3 - 3D cube points equally spaced
 #4 - Equidistant points inside the sphere
 #5 - Random points inside the sphere
+#6 - Equidistant and random points on cylinder
 set choose 2
 set a 1
 set radius 2.0
@@ -153,6 +154,45 @@ if {$choose == 5} {
 	}
 }
 ###################
+if {$choose ==6} {
+        set long 0.0
+        for {set l 0} {$l < 30} {incr l} {
+         set num_pts 20
+         #set num_pts [expr int((4.0*3.14*$radius*$radius)/(210.0*210.0))]
+         set PI 3.1415926535897931
+	 #equidistant points on the disk
+         set dlong [expr 2.0*$PI/$num_pts]
+	 #random points on the disk
+        # set dlong [expr rand()*2*$PI]
+         set dz [expr 2.0/$num_pts]
+       #  set long 0.0
+         set z [expr 1-$dz/2]
+         set sphere {}
+                  for {set i 0 } {$i < $num_pts} {incr i} {
+                  set r [expr sqrt(1-$z*$z)]
+                  set sp_x [expr 170.0*cos($long)]
+                  set sp_y [expr 170.0*sin($long)]
+                  set sp_z [expr $l*80.0]
+                  set z 0.0
+                  set long [expr $long+$dlong]
+                  set a  [llength $crd]
+                     if {$a >800} {
+                        break
+                     }
+                  set coord [concat "$sp_x $sp_y $sp_z"]
+                  lappend crd $coord
+                  }
+         if {$l%2 ==0} {
+        set long [expr $dlong/2.0]
+        }
+         if {$l%2 ==1} {
+        set long 0.0
+        }
+        set radius [expr $radius+210.0]
+        }
+}
+
+######################################
 set a  [llength $crd]
 puts "$a"
 #puts $crd
