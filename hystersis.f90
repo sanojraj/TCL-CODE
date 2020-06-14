@@ -1,24 +1,15 @@
 program test01
-
-character(len=40)    :: filename           !Storing the file name
-character(len=20)    :: nam                !Collecting the file name within the file
-integer(8)           :: N  
-real*8,dimension(1:600000)::rx                !Number of coordinates within the file
-!real*8,dimension(30000:30000)::boa1
-real(8), allocatable :: boa(:,:),boa1(:,:),boa2(:,:)         !Array containing xyz coordinates
-character(len=6), allocatable :: atom(:,:) !Array containing the atomic make up
-integer(8)           :: i,j,k,start,start1,start2,N1,a          !Do loop parameters
+integer(8):: N  
+real*8,dimension(1:600000)::rx                
+real(8), allocatable :: boa(:,:),boa1(:,:),boa2(:,:)         
+character(len=6), allocatable :: atom(:,:) 
+integer(8) :: i,j,k,start,start1,start2,N1,a         
 real*8::summ,sum1
 
 read*,N1
-!N1=40
     filename = '' 
- !   write (6,*) 'Enter file name' 
- !   read (5,*) filename 
-   ! open (10, file=filename, status='OLD') 
     open (10, file="O-frs_10.xyz", status='OLD') 
     open (1, file="test222.txt", status='unknown') 
-    !write (6,*) 'Sucessfully opened file:', filename 
 
 start =1
     do j =1,N1
@@ -65,7 +56,7 @@ deallocate (atom)
 deallocate (boa1)
 deallocate (boa2)
 
-			end do
+end do
     close (10) 
     close (1)
 !!!!!AVERAGING DIPOLE 
